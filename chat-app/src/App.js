@@ -1,10 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import Login from "./components/Login"
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+import Main from "./components/Main"
+
+//contexts
+import UserProvider from './contexts/UserProvider';
+import AccountProvider from './contexts/AccountProvider';
 
 function App() {
+  const clientId = '1084812599674-vuvmapn5j9b1jflr3io09bhj75g23icp.apps.googleusercontent.com';
+
   return (
-    <Login />
+    <GoogleOAuthProvider clientId={clientId}>
+      <UserProvider>
+        <AccountProvider>
+          <Main />
+        </AccountProvider>
+      </UserProvider>
+    </GoogleOAuthProvider>
   );
 }
 
