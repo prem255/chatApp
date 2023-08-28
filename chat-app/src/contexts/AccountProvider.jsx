@@ -4,9 +4,7 @@ import { createContext, useState } from 'react'
 export const AccountContext = createContext(null);
 
 const AccountProvider = ({ children }) => {
-  const [account, setAccount] = useState();
-  const [showloginButton, setShowloginButton] = useState(true);
-  const [showlogoutButton, setShowlogoutButton] = useState(false)
+  const [account, setAccount] = useState('');
   const [activeUser, setActiveUser] = useState([])
   const [newMessageFlag, setNewMessageFlag] = useState(false)
 //   const socket = useRef();
@@ -20,10 +18,6 @@ const AccountProvider = ({ children }) => {
     <AccountContext.Provider value={{
       account,
       setAccount,
-      showloginButton,
-      setShowloginButton,
-      showlogoutButton,
-      setShowlogoutButton,
       activeUser,
       setActiveUser,
       newMessageFlag,
