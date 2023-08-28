@@ -13,6 +13,7 @@ const PrivateRoute = ({ children }) => {
         } catch (error) {
             navigate('/login');
         }
+        // eslint-disable-next-line
     }, [user]);
 
     return children;
