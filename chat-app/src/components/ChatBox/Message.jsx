@@ -16,6 +16,7 @@ function Message(props) {
 
     useEffect(() => {
         getMessage()
+        // eslint-disable-next-line
     }, [props.messagefor, props.messageFlag])
 
     return (

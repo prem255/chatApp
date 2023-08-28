@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify'
 import { Paper, Grid, Box, Divider, TextField, Typography, List } from '@mui/material';
 import ChatList from './ChatList';
@@ -13,35 +13,36 @@ import DefaultChatTemplate from './DefaultChatTemplate';
 const Chat = () => {
     // Sample user list data
     const [user, setUser] = useState([])
+    
     const [contactList, setContactList] = useState([])
     const [addUserStatus, setaddUserStatus] = useState(false)
 
     const [messagesOfContact, setmessagesOfContact] = useState("")
     const [sentMessage, setSentMessage] = useState(false)
 
-    const defaultchatList = [
-        { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
-        { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
-        { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
-        { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
-        { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' },
-        { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
-        { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
-        { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
-        { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
-        { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' },
-        { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
-        { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
-        { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
-        { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
-        { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' },
-        { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
-        { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
-        { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
-        { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
-        { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' }
+    // const defaultchatList = [
+    //     { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
+    //     { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
+    //     { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
+    //     { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
+    //     { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' },
+    //     { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
+    //     { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
+    //     { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
+    //     { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
+    //     { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' },
+    //     { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
+    //     { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
+    //     { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
+    //     { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
+    //     { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' },
+    //     { id: 1, name: 'John Wick', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'online' },
+    //     { id: 2, name: 'Alice', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'offline' },
+    //     { id: 3, name: 'prem Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/2.jpg', status: 'offline' },
+    //     { id: 4, name: 'nitesh Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/1.jpg', status: 'offline' },
+    //     { id: 5, name: 'Cindy Baker', avatarSrc: 'https://material-ui.com/static/images/avatar/3.jpg', status: 'online' }
 
-    ];
+    // ];
 
 
     const fetchContactList = async () => {
@@ -52,6 +53,7 @@ const Chat = () => {
                 if (userContacts.data.userContactDetail.length !== 0) {
                     console.log("hjjsksk", userContacts)
                     setContactList(userContacts.data.userContactDetail)
+                    setUser([])
                 }
             }
             else return toast.error(userContacts.data.message)
