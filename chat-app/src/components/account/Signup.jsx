@@ -38,7 +38,7 @@ export default function Signup() {
                return toast.error(res.data.message)
             }
         } catch (error) {
-            console.log("error in login", error)
+            // console.log("error in login", error)
             return toast.error("Something went wrong")
         }
     };

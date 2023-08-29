@@ -8,12 +8,17 @@ import AddUser from './AddUser';
 import EditUserDetail from './EditUserDetail'
 import { userApi } from '../../Helper/helper';
 import DefaultChatTemplate from './DefaultChatTemplate';
+import decode from 'jwt-decode'
+
 
 
 const Chat = () => {
     // Sample user list data
+    let token = window.localStorage.getItem('token')
+    if (token) token = decode(token)
+    // eslint-disable-next-line
     const [user, setUser] = useState([])
-    
+
     const [contactList, setContactList] = useState([])
     const [addUserStatus, setaddUserStatus] = useState(false)
 
@@ -51,15 +56,15 @@ const Chat = () => {
             let userContacts = await userApi("", "getContact")
             if (userContacts.status === 200) {
                 if (userContacts.data.userContactDetail.length !== 0) {
-                    console.log("hjjsksk", userContacts)
                     setContactList(userContacts.data.userContactDetail)
-                    setUser([])
+                    // setUser([])
                 }
             }
             else return toast.error(userContacts.data.message)
         }
         catch (e) {
             console.log("error in fetching chat", e)
+            return toast.error("Something went wrong.")
         }
     }
     useEffect(() => {
@@ -81,7 +86,7 @@ const Chat = () => {
                     <Grid item xs={3} sx={{ borderRight: '1px solid #e0e0e0', overflowY: 'auto' }}>
                         <Box display={'flex'}>
                             <Grid item xs={8}>
-                                <ChatList chatList={user} />
+                                <ChatList chatList={[{ "email": token?.email }]} />
                             </Grid>
                             <Grid item xs={4} sx={{ display: 'flex', overflowX: 'hidden' }}>
                                 <EditUserDetail />
@@ -99,6 +104,7 @@ const Chat = () => {
                     <Grid item xs={9} sx={{ display: 'flex', flexDirection: 'column', overflowY: 'none' }}>
                         {messagesOfContact.length !== 0 ?
                             <>
+                                <ChatList chatList={contactList.filter(o => o.email === messagesOfContact)} />
                                 <List sx={{ height: 'calc(70vh)', overflowY: 'auto' }}>
                                     <MessageList messagefor={messagesOfContact} messageFlag={sentMessage} />
                                 </List>

@@ -31,7 +31,7 @@ export default function AddUser(props) {
                 return toast.error(res.data.message)
             }
         } catch (error) {
-            console.log("error in addingUser", error)
+            // console.log("error in addingUser", error)
             return toast.error("Something went wrong")
         }
     }

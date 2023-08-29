@@ -51,7 +51,7 @@ async function authApi(data, authType) {
         return loginResponse;
     } catch (error) {
         const msg = error?.response
-        console.log("msging", msg)
+        // console.log("msging", msg)
         return msg;
         // if (msg) return toast.error(msg)
         // return toast.error("Something Went Wrong");
@@ -84,7 +84,7 @@ const userApi = async (data, task) => {
         return res;
     } catch (error) {
         const msg = error?.response
-        console.log("msging", msg)
+        // console.log("msging", msg)
         return msg;
     }
 
@@ -107,7 +107,7 @@ const chatApi = async (data, task) => {
         return res;
     } catch (error) {
         const msg = error?.response
-        console.log("msging", msg)
+        // console.log("msging", msg)
         return msg;
     }
 
