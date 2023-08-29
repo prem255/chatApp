@@ -1,4 +1,3 @@
-const decode = require('jwt-decode')
 function validateEmail(value, state) {
     // eslint-disable-next-line
     const re = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
