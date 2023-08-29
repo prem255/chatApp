@@ -16,6 +16,7 @@ const Chat = () => {
     // Sample user list data
     let token = window.localStorage.getItem('token')
     if (token) token = decode(token)
+    // eslint-disable-next-line
     const [user, setUser] = useState([])
 
     const [contactList, setContactList] = useState([])
@@ -63,6 +64,7 @@ const Chat = () => {
         }
         catch (e) {
             console.log("error in fetching chat", e)
+            return toast.error("Something went wrong.")
         }
     }
     useEffect(() => {

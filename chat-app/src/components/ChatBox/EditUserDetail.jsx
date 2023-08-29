@@ -46,7 +46,7 @@ export default function AddUser() {
                 }
             }
         } catch (error) {
-            console.log("error in login", error)
+            // console.log("error in login", error)
             return toast.error("Something went wrong")
         }
 

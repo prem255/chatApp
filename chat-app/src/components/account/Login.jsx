@@ -35,11 +35,11 @@ export default function Login() {
                 window.location.href= '/'
             }
             else {
-                console.log("try", loginResponse.data)
+                // console.log("try", loginResponse.data)
                 return toast.error(loginResponse.data.message)
             }
         } catch (error) {
-            console.log("error in login", error)
+            // console.log("error in login", error)
             return toast.error("Something went wrong")
         }
     }

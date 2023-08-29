@@ -7,7 +7,6 @@ function Message(props) {
 
     async function getMessage() {
         const messageRes = await chatApi({ receiverId: props.messagefor }, "getMessage")
-        console.log(messageRes)
         if (messageRes.status === 200) {
 
             setMessage(messageRes.data.messages)
@@ -17,7 +16,7 @@ function Message(props) {
     useEffect(() => {
         getMessage()
         setInterval(getMessage, 2000);
-    }, [])
+    })
 
     return (
         <>
