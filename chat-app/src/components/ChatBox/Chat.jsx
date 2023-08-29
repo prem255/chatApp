@@ -101,12 +101,12 @@ const Chat = () => {
                             <ChatList chatList={contactList} selectedContact={setmessagesOfContact} />
                         </Box>
                     </Grid>
-                    <Grid item xs={9} sx={{ display: 'flex', flexDirection: 'column', overflowY: 'none' }}>
+                    <Grid item xs={9} sx={{ display: 'flex', flexDirection: 'column' }}>
                         {messagesOfContact.length !== 0 ?
                             <>
                                 <ChatList chatList={contactList.filter(o => o.email === messagesOfContact)} />
                                 <List sx={{ height: 'calc(70vh)', overflowY: 'auto' }}>
-                                    <MessageList messagefor={messagesOfContact} messageFlag={sentMessage} />
+                                    <MessageList messagefor={messagesOfContact} messageFlag={sentMessage} sentMessage={sentMessage} />
                                 </List>
                                 <SendMessageBox messagefor={messagesOfContact} sentMessage={sentMessage} messageFlag={setSentMessage} />
                                 <Divider />
