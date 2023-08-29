@@ -1,3 +1,4 @@
+const decode = require('jwt-decode')
 function validateEmail(value, state) {
     // eslint-disable-next-line
     const re = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
@@ -20,4 +21,6 @@ function validatePassword(password) {
     if (password.length >= 8 && password.length <= 20) return true
     else return false
 }
+
+
 module.exports = { validateEmail, validateName, validatePassword }

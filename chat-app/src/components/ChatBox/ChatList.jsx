@@ -5,6 +5,7 @@ function ChatList(props) {
         console.log("Clicked user's email:", email);
         props.selectedContact(email)
     }
+    console.log(props)
     return (
         <List>
             {props.chatList.length !== 0 ? props.chatList.map((user, index) => (

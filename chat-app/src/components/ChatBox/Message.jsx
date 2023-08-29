@@ -16,8 +16,8 @@ function Message(props) {
 
     useEffect(() => {
         getMessage()
-        // eslint-disable-next-line
-    }, [props.messagefor, props.messageFlag])
+        setInterval(getMessage, 2000);
+    }, [])
 
     return (
         <>
@@ -25,7 +25,7 @@ function Message(props) {
                 <ListItem key={index}>
                     <Grid container>
                         <Grid item xs={12}>
-                            {message.senderId === props.messagefor ? <ListItemText align={"right"} primary={message.content} /> : <ListItemText align={"left"} primary={message.content} />}
+                            {message.senderId === props.messagefor ? <ListItemText align={"left"} primary={message.content} /> : <ListItemText align={"right"} primary={message.content} />}
                         </Grid>
                     </Grid>
                 </ListItem>)) : ""}
