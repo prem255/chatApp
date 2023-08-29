@@ -9,14 +9,22 @@ function Message(props) {
         const messageRes = await chatApi({ receiverId: props.messagefor }, "getMessage")
         if (messageRes.status === 200) {
 
-            setMessage(messageRes.data.messages)
+            // setMessage(messageRes.data.messages)
+            return messageRes.data.messages
         }
     }
-
     useEffect(() => {
-        getMessage()
-        setInterval(getMessage, 2000);
-    })
+        const intervalId = setInterval(() => {
+          getMessage().then(data => {
+            setMessage(data);
+          });
+        }, 3000);
+      
+        return () => {
+          clearInterval(intervalId);
+        };
+        // eslint-disable-next-line
+      }, [props.sentMessage]);
 
     return (
         <>
