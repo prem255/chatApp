@@ -57,7 +57,7 @@ const Chat = () => {
             if (userContacts.status === 200) {
                 if (userContacts.data.userContactDetail.length !== 0) {
                     setContactList(userContacts.data.userContactDetail)
-                    setUser([])
+                    // setUser([])
                 }
             }
             else return toast.error(userContacts.data.message)
